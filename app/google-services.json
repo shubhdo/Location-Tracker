@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "695794560276",
+    "firebase_url": "https://locationapi-7fed7.firebaseio.com",
+    "project_id": "locationapi-7fed7",
+    "storage_bucket": "locationapi-7fed7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:695794560276:android:10b032be2c4639e4",
+        "android_client_info": {
+          "package_name": "social.com.locationtutorial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "695794560276-m9e1mantg62c8rec50ssb36t32ag4mj8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhy_UEcumRl3XO_ODJtPFvJ4kg5JAaNHs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
