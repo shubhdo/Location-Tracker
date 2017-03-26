@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="social.com.locationtutorial">
+    <uses-feature
+        android:name="android.hardware.microphone"
+        android:required="false"/>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
-    <uses-feature android:name="android.hardware.Camera"/>
+    <uses-feature android:name="android.hardware.Camera" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,11 +30,10 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".MainActivity" />
-        <activity android:name=".Main2Activity">
+        <activity android:name=".DeviceListActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <!--
@@ -46,15 +53,24 @@
             android:label="@string/title_activity_maps">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="social.com.locationtutorial.Main2Activity" />
+                android:value="social.com.locationtutorial.DeviceListActivity" />
         </activity>
-        <activity android:name=".CameraActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <service android:name=".SinchService"></service>
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+        <activity android:name=".CallScreenActivity"/>
+        <activity android:name=".IncomingCallScreenActivity" android:screenOrientation="portrait"
+            android:noHistory="true"/>
+        <activity android:name=".PlaceCallActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
+
+
+
+
+

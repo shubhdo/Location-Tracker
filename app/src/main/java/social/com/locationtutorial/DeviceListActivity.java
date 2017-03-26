@@ -11,12 +11,10 @@ import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-public class Main2Activity extends AppCompatActivity {
+
+public class DeviceListActivity extends AppCompatActivity {
     DatabaseReference mDatabaseReference;
     ListView listView;
     FirebaseListAdapter<Model> modelFirebaseListAdapter;
@@ -31,7 +29,7 @@ public class Main2Activity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(Main2Activity.this,MainActivity.class);
+                Intent i=new Intent(DeviceListActivity.this,MainActivity.class);
                 startActivity(i);
             }
         });
@@ -46,7 +44,7 @@ public class Main2Activity extends AppCompatActivity {
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent i=new Intent(Main2Activity.this,MapsActivity.class);
+                        Intent i=new Intent(DeviceListActivity.this,MapsActivity.class);
                         i.putExtra("lat",model.mLatitude);
                         i.putExtra("long",model.mLongitude);
                         startActivity(i);
@@ -64,5 +62,9 @@ public class Main2Activity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         modelFirebaseListAdapter.cleanup();
+    }
+    public void VideoCall(View v) {
+        Intent intent=new Intent(this,LoginActivity.class);
+        startActivity(intent);
     }
 }

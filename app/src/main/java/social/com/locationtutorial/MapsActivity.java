@@ -1,7 +1,12 @@
 package social.com.locationtutorial;
 
+import android.content.Context;
+import android.hardware.Camera;
+import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.SurfaceView;
+import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -10,12 +15,17 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     Double lat;
     Double lang;
-    @Override
+
+     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
@@ -26,6 +36,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
+
 
 
     /**
@@ -48,4 +59,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
     }
+
+
 }
+
+
+

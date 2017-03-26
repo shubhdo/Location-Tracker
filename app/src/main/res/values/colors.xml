@@ -6,5 +6,7 @@
     <color name="view_bg">#b20e0f</color>
     <color name="white">#ffffff</color>
     <color name="btn_bg">#3e4a56</color>
-
+    <color name="sinch_purple">#ff63029d</color>
+    <color name="off_white">#fffafafa</color>
+    <color name="greyish">#fff2f1f2</color>
 </resources>
