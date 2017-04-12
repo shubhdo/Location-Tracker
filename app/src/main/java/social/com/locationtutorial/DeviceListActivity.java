@@ -66,5 +66,6 @@ public class DeviceListActivity extends AppCompatActivity {
     public void VideoCall(View v) {
         Intent intent=new Intent(this,LoginActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.enter,R.anim.exit);
     }
 }
