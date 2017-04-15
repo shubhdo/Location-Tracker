@@ -31,6 +31,7 @@ public class DeviceListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i=new Intent(DeviceListActivity.this,MainActivity.class);
                 startActivity(i);
+                overridePendingTransition(R.anim.enter,R.anim.exit);
             }
         });
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
@@ -48,6 +49,8 @@ public class DeviceListActivity extends AppCompatActivity {
                         i.putExtra("lat",model.mLatitude);
                         i.putExtra("long",model.mLongitude);
                         startActivity(i);
+                        overridePendingTransition(R.anim.enter,R.anim.exit);
+
                     }
                 });
                 ((TextView)view.findViewById(R.id.text2)).setText("Latitude:"+model.mLatitude+"  "+"Longitude:"+model.mLongitude);

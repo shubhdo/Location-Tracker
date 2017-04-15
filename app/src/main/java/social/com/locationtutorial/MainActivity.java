@@ -217,7 +217,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.left_to_right,R.anim.right_to_left);
+    }
 }
 
 

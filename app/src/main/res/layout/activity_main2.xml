@@ -11,12 +11,16 @@
         android:layout_height="wrap_content"
         android:text="Choose the device"
         android:textSize="20sp"
-        android:textColor="#41e720"
+        android:textColor="@color/list_row_pressed_bg"
         android:layout_gravity="center"
         android:layout_margin="10dp"
         android:id="@+id/textView"
 
         />
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@color/list_row_selected_bg"/>
 <ListView
     android:layout_width="match_parent"
     android:layout_height="0dp"
@@ -27,15 +31,17 @@
 
 </ListView>
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:background="@drawable/button_background"
         android:text="Know and Share Your location"
         android:id="@+id/button"/>
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Place Video Call"
+        android:background="@drawable/button_background"
         android:layout_gravity="center"
         android:onClick="VideoCall"
         />

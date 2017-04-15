@@ -42,6 +42,7 @@
       <Button
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          android:background="@drawable/button_background"
           android:layout_gravity="bottom"
           android:onClick="Capture"
           android:text="Capture Image"
