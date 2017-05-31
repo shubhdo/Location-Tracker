@@ -71,4 +71,6 @@ public class DeviceListActivity extends AppCompatActivity {
         startActivity(intent);
         overridePendingTransition(R.anim.enter,R.anim.exit);
     }
+
+
 }

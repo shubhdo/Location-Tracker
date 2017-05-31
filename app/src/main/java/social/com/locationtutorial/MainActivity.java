@@ -1,5 +1,6 @@
 package social.com.locationtutorial;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -28,8 +29,14 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import android.Manifest;
 
@@ -49,8 +56,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private DatabaseReference mDatabaseReference;
     private Camera mCamera;
     private CameraPreview mPreview;
-
-
+    FirebaseStorage mFirebaseStorage;
+    StorageReference mStorageReference;
+    String url;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +71,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 .addApi(LocationServices.API)
                 .build();
         mCamera = getCameraInstance();
-
+        mFirebaseStorage=FirebaseStorage.getInstance();
+        mStorageReference=mFirebaseStorage.getReference();
         // Create our Preview view and set it as the content of our activity.
         mPreview = new CameraPreview(this, mCamera);
         FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
@@ -97,17 +106,43 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         }
         return c; // returns null if camera is unavailable
     }
+    public void viewPhotos(View view) {
+        Intent i=new Intent(this,PhotoViewerActivity.class);
+        i.putExtra("link",url);
+
+        startActivity(i);
+        overridePendingTransition(R.anim.enter,R.anim.exit);
+    }
 
     private Camera.PictureCallback mPicture = new Camera.PictureCallback() {
 
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
 
+            UploadTask uploadTask=mStorageReference.child("img"+System.currentTimeMillis() + ".png").putBytes(data);
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(MainActivity.this, "Image Upload Failed", Toast.LENGTH_SHORT).show();
+                }
 
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Uri downloadUrl=taskSnapshot.getDownloadUrl();
+                    url=downloadUrl.toString();
+                    Toast.makeText(MainActivity.this, "Successfully uploaded", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                  Log.d("Fatal",100*taskSnapshot.getBytesTransferred()+"");
+                }
+            });
             Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
             File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES); //Creates app specific folder
             path.mkdirs();
-            File imageFile = new File(path, "img" + ".png"); // Imagename.png
+            File imageFile = new File(path, "img"+System.currentTimeMillis() + ".png"); // Imagename.png
             try {
 
                 FileOutputStream out = new FileOutputStream(imageFile);

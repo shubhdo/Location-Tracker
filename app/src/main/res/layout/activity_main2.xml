@@ -45,4 +45,5 @@
         android:layout_gravity="center"
         android:onClick="VideoCall"
         />
+
 </LinearLayout>
